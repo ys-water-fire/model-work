@@ -1,0 +1,28 @@
+
+data:
+  caption_path: "./Flickr8kCN/flickr8kcn/data/flickr8kzhc.caption.txt"
+  image_dir: "./Flickr8kCN/Flickr8k_Dataset/Flicker8k_Dataset/"
+  max_length: 60
+
+training:
+  batch_size: 8
+  micro_batch: 8
+  accum_steps: 2
+  epochs: 20
+  lr: 4.0e-5
+  eta_min: 1.0e-6
+  weight_decay: 1.0e-4
+
+evaluation:
+  test_image: "./Flickr8kCN/Flickr8k_Dataset/Flicker8k_Dataset/69189650_6687da7280.jpg"
+  test_image2: "./Flickr8kCN/Flickr8k_Dataset/Flicker8k_Dataset/10815824_2997e03d76.jpg"
+  test_image3: "./Flickr8kCN/Flickr8k_Dataset/Flicker8k_Dataset/2079152458_40712c3b40.jpg"
+
+model:
+  embed_dim: 768
+  patch_size: 16
+  image_size: 224
+  dropout: 0.1
+  hidden_dim: 3072
+  num_heads: 8
+  depth: 12

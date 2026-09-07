@@ -1,0 +1,59 @@
+
+data:
+   caption_path: "./Flickr8kCN/flickr8kcn/data/flickr8kzhc.caption.txt"
+   image_path: "./Flickr8kCN/Flickr8k_Dataset/Flicker8k_Dataset/"
+   max_length: 60
+   llm_model_path: "./opencv/Qwen/"
+   vision_model_path: "./opencv/siglip/"
+   save_path: './opencv/llava-onevision'
+
+training:
+   micro_batch: 2
+   accum_steps: 2
+   subset_size: 250
+   img_size: 384
+   patch_size: 14
+   num_patches: 27
+   max_num_images: 4
+   video_frames: 24
+   video_token_per_block: 196
+   epochs: 5
+   image_token_budget: 2916
+   lr: 4.0e-5
+   grad_clip: 1.0
+   loss_chunk: 512
+   eta_min: 1.0e-6
+   weight_decay: 1.0e-4
+   aspect_threshold: 1.5
+   max_tiles: 9
+   lr_proj: 2.0e-5        # stage1 用 1e-3
+   lr_vision: 4.0e-6
+
+evaluation:
+   test_image: "./Flickr8kCN/Flickr8k_Dataset/Flicker8k_Dataset/69189650_6687da7280.jpg"
+   test_image2: "./Flickr8kCN/Flickr8k_Dataset/Flicker8k_Dataset/10815824_2997e03d76.jpg"
+   test_image3: "./Flickr8kCN/Flickr8k_Dataset/Flicker8k_Dataset/2079152458_40712c3b40.jpg"
+
+model:
+   vision_embed_dim: 1152
+   caption_embed_dim: 1536
+   hidden_dim: 4068
+   dropout: 0.1
+   img_size: 224 
+
+lora:
+   lora_r: 8
+   lora_alpha: 16
+   lora_dropout: 0.05
+   lora_targets: ['q_proj','v_proj','k_proj','o_proj']
+   
+MULTI_JSONL:
+    train: './multi_image&video/llava_multimodal_data/multimodal_data/multi_image_train.jsonl'
+    val: './multi_image&video/llava_multimodal_data/multimodal_data/multi_image_val.jsonl'
+    test: './multi_image&video/llava_multimodal_data/multimodal_data/multi_image_test.jsonl'
+
+VIDEO_JSONL:
+    train: './multi_image&video/llava_multimodal_data/multimodal_data/video_train.jsonl'
+    val: './multi_image&video/llava_multimodal_data/multimodal_data/video_val.jsonl'
+    test: './multi_image&video/llava_multimodal_data/multimodal_data/video_test.jsonl'
+
