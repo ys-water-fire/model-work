@@ -59,7 +59,8 @@ class MultiHeadAttention(nn.Module):
                           for Model,x in zip(self.linears,(query,key,value))]
         atten=torch.matmul(query,key.transpose(-1,-2)/math.sqrt(self.d_k))
         if mask is not None:
-            mask=mask.unsqueeze(1)
+            if mask.dim()==3:
+                 mask=mask.unsqueeze(1)
             atten=atten.masked_fill(mask==0,-1e9)
 
         atten_score=F.softmax(atten,dim=-1)
